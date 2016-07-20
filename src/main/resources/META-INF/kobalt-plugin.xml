@@ -1,0 +1,6 @@
+<kobalt-plugin>
+    <name>kobalt-maven-local</name>
+    <plugin-actors>
+        <class-name>net.thauvin.erik.kobalt.plugin.maven.local.MavenLocalPlugin</class-name>
+    </plugin-actors>
+</kobalt-plugin>
