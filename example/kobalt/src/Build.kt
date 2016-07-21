@@ -11,6 +11,8 @@ val pl = plugins(file("../kobaltBuild/libs/kobalt-maven-local-0.4.0-beta.jar"))
 
 val example = project {
 
+    //println(">>> LOCAL MAVEN REPO: " + localMaven())
+
     name = "example"
     group = "com.example"
     artifactId = name

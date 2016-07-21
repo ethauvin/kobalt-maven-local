@@ -33,24 +33,41 @@ package net.thauvin.erik.kobalt.plugin.maven.local
 
 import com.beust.kobalt.api.BasePlugin
 import com.beust.kobalt.api.ILocalMavenRepoPathInterceptor
-import com.beust.kobalt.api.KobaltContext
-import com.beust.kobalt.api.Project
 import com.beust.kobalt.misc.log
+import com.beust.kobalt.misc.warn
 import org.apache.maven.settings.building.DefaultSettingsBuilderFactory
 import org.apache.maven.settings.building.DefaultSettingsBuildingRequest
 import java.io.File
+import java.io.FileInputStream
+import java.util.*
 
 public class MavenLocalPlugin : BasePlugin(), ILocalMavenRepoPathInterceptor {
-    var mavenLocalPath: String = ""
+    val MAVEN_LOCAL_REPO_PROPERTY = "maven-local-repo"
+
+    var mavenLocalPath: String? = null
 
     override val name = "kobalt-maven-local"
 
-    override fun apply(project: Project, context: KobaltContext) {
+    init {
         val factory = DefaultSettingsBuilderFactory()
         val builder = factory.newInstance()
         val settings = DefaultSettingsBuildingRequest()
 
+        val localProps = Properties().apply {
+            FileInputStream("local.properties").use { fis -> load(fis) }
+        }
+
+//        val sysProps = Properties()
+//        sysProps.putAll(System.getProperties())
+//        if (localProps.isNotEmpty()) {
+//            if (localProps.containsKey(MAVEN_LOCAL_REPO_PROPERTY)) {
+//                sysProps.put(MAVEN_LOCAL_REPO_PROPERTY, localProps.getProperty(MAVEN_LOCAL_REPO_PROPERTY))
+//            }
+//        }
+//        settings.systemProperties = sysProps
+
         settings.systemProperties = System.getProperties()
+
         settings.userSettingsFile = File(System.getProperty("user.home"), ".m2/settings.xml")
 
         val m2Home = System.getProperty("M2_HOME")
@@ -60,12 +77,16 @@ public class MavenLocalPlugin : BasePlugin(), ILocalMavenRepoPathInterceptor {
 
         val result = builder.build(settings)
         mavenLocalPath = result.effectiveSettings.localRepository
+
+        if (mavenLocalPath == null) {
+            warn("Unable to parse local maven settings.")
+        }
     }
 
     override fun repoPath(currentPath: String): String {
-        if (mavenLocalPath.isNotEmpty()) {
-            log(2, "Setting maven local repository path to: " + mavenLocalPath)
-            return mavenLocalPath
+        if (mavenLocalPath != null) {
+            log(2, "Setting Maven Local Repository path to: " + mavenLocalPath)
+            return mavenLocalPath.toString()
         } else {
             return currentPath
         }
