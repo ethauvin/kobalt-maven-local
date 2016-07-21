@@ -15,6 +15,7 @@
 /build
 /deploy
 /dist
+/example/libs
 /gen
 /gradle.properties
 /local.properties
