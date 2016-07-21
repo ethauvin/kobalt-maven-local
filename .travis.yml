@@ -3,10 +3,10 @@ language: java
 jdk:
   - oraclejdk8
 
- before_install:
-  - chmod +x gradlew
- 
- install: true
+before_install:
+  - chmod +x kobaltw
+
+install: true
 
 cache:
   directories:
