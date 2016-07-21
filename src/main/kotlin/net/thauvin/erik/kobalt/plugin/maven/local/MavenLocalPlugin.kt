@@ -42,9 +42,9 @@ import java.io.FileInputStream
 import java.util.*
 
 public class MavenLocalPlugin : BasePlugin(), ILocalMavenRepoPathInterceptor {
-    val MAVEN_LOCAL_REPO_PROPERTY = "maven-local-repo"
+    val MAVEN_LOCAL_REPO_PROPERTY = "maven.repo.local"
 
-    var mavenLocalPath: String? = null
+    var mvnLocalPath: String? = null
 
     override val name = "kobalt-maven-local"
 
@@ -57,36 +57,45 @@ public class MavenLocalPlugin : BasePlugin(), ILocalMavenRepoPathInterceptor {
             FileInputStream("local.properties").use { fis -> load(fis) }
         }
 
-//        val sysProps = Properties()
-//        sysProps.putAll(System.getProperties())
-//        if (localProps.isNotEmpty()) {
-//            if (localProps.containsKey(MAVEN_LOCAL_REPO_PROPERTY)) {
-//                sysProps.put(MAVEN_LOCAL_REPO_PROPERTY, localProps.getProperty(MAVEN_LOCAL_REPO_PROPERTY))
-//            }
-//        }
-//        settings.systemProperties = sysProps
+        val sysProps = System.getProperties()
 
-        settings.systemProperties = System.getProperties()
+        if (localProps.containsKey(MAVEN_LOCAL_REPO_PROPERTY)) {
+            val mvnLocalProp = localProps.getProperty(MAVEN_LOCAL_REPO_PROPERTY, "")
+            if (mvnLocalProp.length > 0) {
+                mvnLocalPath = mvnLocalProp
+            }
+        } else if (sysProps.containsKey(MAVEN_LOCAL_REPO_PROPERTY)) {
+            val mvnLocalProp = sysProps.getProperty(MAVEN_LOCAL_REPO_PROPERTY, "")
+            if (mvnLocalProp.length > 0) {
+                mvnLocalPath = mvnLocalProp
+            }
+        } else {
+            settings.systemProperties = sysProps
+            if (localProps.isNotEmpty()) {
+                if (localProps.containsKey(MAVEN_LOCAL_REPO_PROPERTY)) {
+                    sysProps.put(MAVEN_LOCAL_REPO_PROPERTY, localProps.getProperty(MAVEN_LOCAL_REPO_PROPERTY))
+                }
+            }
+            settings.userSettingsFile = File(System.getProperty("user.home"), ".m2/settings.xml")
 
-        settings.userSettingsFile = File(System.getProperty("user.home"), ".m2/settings.xml")
+            val m2Home = System.getProperty("M2_HOME")
+            if (m2Home != null) {
+                settings.globalSettingsFile = File(m2Home, "conf/settings.xml")
+            }
 
-        val m2Home = System.getProperty("M2_HOME")
-        if (m2Home != null) {
-            settings.globalSettingsFile = File(m2Home, "conf/settings.xml")
-        }
+            val result = builder.build(settings)
+            mvnLocalPath = result.effectiveSettings.localRepository
 
-        val result = builder.build(settings)
-        mavenLocalPath = result.effectiveSettings.localRepository
-
-        if (mavenLocalPath == null) {
-            warn("Unable to parse local maven settings.")
+            if (mvnLocalPath == null) {
+                warn("Unable to parse local maven settings.")
+            }
         }
     }
 
     override fun repoPath(currentPath: String): String {
-        if (mavenLocalPath != null) {
-            log(2, "Setting Maven Local Repository path to: " + mavenLocalPath)
-            return mavenLocalPath.toString()
+        if (mvnLocalPath != null) {
+            log(2, "Setting Maven Local Repository path to: " + mvnLocalPath)
+            return mvnLocalPath.toString()
         } else {
             return currentPath
         }
