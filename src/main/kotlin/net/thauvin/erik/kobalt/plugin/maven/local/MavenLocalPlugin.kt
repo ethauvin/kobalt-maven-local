@@ -38,7 +38,8 @@ import com.beust.kobalt.misc.warn
 import org.apache.maven.settings.building.DefaultSettingsBuilderFactory
 import org.apache.maven.settings.building.DefaultSettingsBuildingRequest
 import java.io.File
-import java.io.FileInputStream
+import java.nio.file.Files
+import java.nio.file.Paths
 import java.util.*
 
 public class MavenLocalPlugin : BasePlugin(), ILocalMavenRepoPathInterceptor {
@@ -46,39 +47,35 @@ public class MavenLocalPlugin : BasePlugin(), ILocalMavenRepoPathInterceptor {
 
     var mvnLocalPath: String? = null
 
-    override val name = "kobalt-maven-local"
+    override val name = "Maven Local Repository"
 
     init {
-        val factory = DefaultSettingsBuilderFactory()
-        val builder = factory.newInstance()
-        val settings = DefaultSettingsBuildingRequest()
-
-        val localProps = Properties().apply {
-            FileInputStream("local.properties").use { fis -> load(fis) }
-        }
-
-        val sysProps = System.getProperties()
-
-        if (localProps.containsKey(MAVEN_LOCAL_REPO_PROPERTY)) {
-            val mvnLocalProp = localProps.getProperty(MAVEN_LOCAL_REPO_PROPERTY, "")
-            if (mvnLocalProp.length > 0) {
-                mvnLocalPath = mvnLocalProp
-            }
-        } else if (sysProps.containsKey(MAVEN_LOCAL_REPO_PROPERTY)) {
-            val mvnLocalProp = sysProps.getProperty(MAVEN_LOCAL_REPO_PROPERTY, "")
-            if (mvnLocalProp.length > 0) {
-                mvnLocalPath = mvnLocalProp
-            }
+        if (System.getProperties().containsKey(MAVEN_LOCAL_REPO_PROPERTY)) {
+            mvnLocalPath = System.getProperty(MAVEN_LOCAL_REPO_PROPERTY)
         } else {
-            settings.systemProperties = sysProps
-            if (localProps.isNotEmpty()) {
-                if (localProps.containsKey(MAVEN_LOCAL_REPO_PROPERTY)) {
-                    sysProps.put(MAVEN_LOCAL_REPO_PROPERTY, localProps.getProperty(MAVEN_LOCAL_REPO_PROPERTY))
+            val p = Properties()
+            Paths.get("local.properties").let { path ->
+                if (path.toFile().exists()) {
+                    Files.newInputStream(path).use {
+                        p.load(it)
+                    }
                 }
             }
-            settings.userSettingsFile = File(System.getProperty("user.home"), ".m2/settings.xml")
+            if (p.containsKey(MAVEN_LOCAL_REPO_PROPERTY)) {
+                mvnLocalPath = p.getProperty(MAVEN_LOCAL_REPO_PROPERTY)
+            }
+        }
 
-            val m2Home = System.getProperty("M2_HOME")
+        if (mvnLocalPath.isNullOrBlank()) {
+            val userHome = System.getProperty("user.home")
+            val factory = DefaultSettingsBuilderFactory()
+            val builder = factory.newInstance()
+            val settings = DefaultSettingsBuildingRequest()
+
+            settings.systemProperties = System.getProperties()
+            settings.userSettingsFile = File(userHome, ".m2/settings.xml")
+
+            val m2Home = System.getenv("M2_HOME")
             if (m2Home != null) {
                 settings.globalSettingsFile = File(m2Home, "conf/settings.xml")
             }
@@ -86,8 +83,13 @@ public class MavenLocalPlugin : BasePlugin(), ILocalMavenRepoPathInterceptor {
             val result = builder.build(settings)
             mvnLocalPath = result.effectiveSettings.localRepository
 
-            if (mvnLocalPath == null) {
-                warn("Unable to parse local maven settings.")
+            if (mvnLocalPath.isNullOrBlank()) {
+                val path = File(userHome, ".m2/repository")
+                if (path.isDirectory) {
+                    mvnLocalPath = path.absolutePath
+                } else {
+                    warn("Unable to parse local maven settings.")
+                }
             }
         }
     }

@@ -1,5 +1,5 @@
 <kobalt-plugin>
-    <name>kobalt-maven-local</name>
+    <name>Maven Local Repository</name>
     <plugin-actors>
         <class-name>net.thauvin.erik.kobalt.plugin.maven.local.MavenLocalPlugin</class-name>
     </plugin-actors>

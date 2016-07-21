@@ -47,7 +47,7 @@ val p = project {
     }
 
     dependencies {
-        compile("com.beust:$kobaltDependency:0.862")
+        compile("com.beust:$kobaltDependency:0.863")
         compile("org.apache.maven:maven-settings-builder:3.3.9")
     }
 
