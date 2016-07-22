@@ -17,7 +17,7 @@ val p = project {
     name = "kobalt-maven-local"
     group = "net.thauvin.erik"
     artifactId = name
-    version = "0.4.0-beta"
+    version = "0.5.0"
 
     pom = Model().apply {
         description = "Maven Local Repository plug-in for the Kobalt build system."

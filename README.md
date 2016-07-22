@@ -1,6 +1,6 @@
 # Maven Local Repository plug-in for [Kobalt](http://beust.com/kobalt/home/index.html)
 
-[![License (3-Clause BSD)](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg?style=flat-square)](http://opensource.org/licenses/BSD-3-Clause) [![Build Status](https://travis-ci.org/ethauvin/kobalt-maven-local.svg?branch=master)](https://travis-ci.org/ethauvin/kobalt-maven-local)
+[![License (3-Clause BSD)](https://img.shields.io/badge/license-BSD%203--Clause-blue.svg?style=flat-square)](http://opensource.org/licenses/BSD-3-Clause) [![Build Status](https://travis-ci.org/ethauvin/kobalt-maven-local.svg?branch=master)](https://travis-ci.org/ethauvin/kobalt-maven-local) [![Download](https://api.bintray.com/packages/ethauvin/maven/kobalt-maven-local/images/download.svg) ](https://bintray.com/ethauvin/maven/kobalt-maven-local/_latestVersion)
 
 The plug-in will detect the Maven Local Repository location, similarly to Gradle's [mavenLocal()](https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.RepositoryHandler.html#org.gradle.api.artifacts.dsl.RepositoryHandler:mavenLocal()) repository handler.
 
@@ -9,23 +9,26 @@ To use the plug-in include the following in your `Build.kt` file:
 ```kotlin
 import net.thauvin.erik.kobalt.plugin.maven.local.*
 
-val repos = repos(localMaven())
-
 val pl = plugins("net.thauvin.erik:kobalt-maven-local:")
 
 val p = project {
     name = "example"
 }
 ```
-[View Example](https://github.com/ethauvin/kobalt-maven-local/blob/master/example/kobalt/src/Build.kt)
 
-The `localMaven()` directive will add the location of the Maven Local Repository to Kobalt's repositories list.
+Use the `lovalMaven()` directive to tell Kobalt to look for artifacts in the Maven Local Repository:
+
+```kotlin
+val repos = repos(localMaven())
+```
 
 To publish to the Maven Local Repository use the `publishToMavenLocal` task:
 
 ```
 ./kobaltw publishToMavenLocal
 ```
+
+[View Example](https://github.com/ethauvin/kobalt-maven-local/blob/master/example/kobalt/src/Build.kt)
 
 ## Locations
 
