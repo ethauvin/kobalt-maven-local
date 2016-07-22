@@ -76,7 +76,7 @@ public class MavenLocalPlugin : BasePlugin(), ILocalMavenRepoPathInterceptor {
             settings.userSettingsFile = File(userHome, ".m2/settings.xml")
 
             val m2Home = System.getenv("M2_HOME")
-            if (m2Home != null) {
+            if (!m2Home.isNullOrBlank()) {
                 settings.globalSettingsFile = File(m2Home, "conf/settings.xml")
             }
 
