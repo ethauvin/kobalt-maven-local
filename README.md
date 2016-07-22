@@ -17,7 +17,7 @@ val p = project {
     name = "example"
 }
 ```
-[Example](https://github.com/ethauvin/kobalt-maven-local/blob/master/example/kobalt/src/Build.kt)
+[View Example](https://github.com/ethauvin/kobalt-maven-local/blob/master/example/kobalt/src/Build.kt)
 
 The `localMaven()` directive will add the location of the Maven Local Repository to Kobalt's repositories list.
 
@@ -27,11 +27,11 @@ To publish to the Maven Local Repository use the `publishToMavenLocal` task:
 ./kobaltw publishToMavenLocal
 ```
 
-### Locations
+## Locations
 
 The plug-in looks for the Maven Local Repository in the following locations:
 
-## `maven.repo.local`
+### `maven.repo.local`
 
 Either as a system property or in the project's `local.properties` file.
 
@@ -47,7 +47,7 @@ or in `local.properties` add:
 maven.repo.local=~/foo/repository 
 ```
 
-## `~/.m2/settings.xml`
+### `~/.m2/settings.xml`
 
 If `<localRepository>` is set:
 
@@ -55,11 +55,11 @@ If `<localRepository>` is set:
 <localRepository>~/foo/repository</localRepository>
 ```
 
-## `$M2_HOME/conf/settings.xml`
+### `$M2_HOME/conf/settings.xml`
 
 If the `$M2_HOME` environment variable and `<localRepository>` are set.
 
-## `~/.m2/repository`
+### `~/.m2/repository`
 
 If the directory exists.
 
