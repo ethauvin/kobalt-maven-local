@@ -417,6 +417,8 @@
         <root url="jar://$USER_HOME$/.kobalt/wrapper/dist/kobalt-0.862/kobalt/wrapper/kobalt-0.862.jar!/" />
         <root url="jar://$USER_HOME$/.kobalt/wrapper/dist/kobalt-0.867/kobalt/wrapper/kobalt-0.867.jar!/" />
         <root url="jar://$USER_HOME$/.kobalt/wrapper/dist/kobalt-0.867/kobalt/wrapper/kobalt-0.867.jar!/" />
+        <root url="jar://$USER_HOME$/.kobalt/wrapper/dist/kobalt-0.867/kobalt/wrapper/kobalt-0.867.jar!/" />
+        <root url="jar://$USER_HOME$/.kobalt/wrapper/dist/kobalt-0.867/kobalt/wrapper/kobalt-0.867.jar!/" />
       </SOURCES>
     </library>
   </component>

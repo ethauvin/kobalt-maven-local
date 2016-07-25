@@ -16,7 +16,7 @@ val p = project {
 }
 ```
 
-Use the `lovalMaven()` directive to tell Kobalt to look for artifacts in the Maven Local Repository:
+Use the `localMaven()` directive to tell Kobalt to look for artifacts in the Maven Local Repository:
 
 ```kotlin
 val repos = repos(localMaven())
