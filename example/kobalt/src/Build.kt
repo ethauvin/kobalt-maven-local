@@ -6,8 +6,8 @@ import net.thauvin.erik.kobalt.plugin.maven.local.*
 
 val repos = repos(localMaven())
 
-//val pl = plugins(file("../kobaltBuild/libs/kobalt-maven-local-0.5.0.jar"))
-val pl = plugins("net.thauvin.erik:kobalt-maven-local:0.5.0")
+val pl = plugins(file("../kobaltBuild/libs/kobalt-maven-local-0.5.0.jar"))
+//val pl = plugins("net.thauvin.erik:kobalt-maven-local:0.5.0")
 
 val example = project {
 

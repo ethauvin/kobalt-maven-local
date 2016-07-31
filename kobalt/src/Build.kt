@@ -1,12 +1,16 @@
 import com.beust.kobalt.plugin.packaging.assemble
 import com.beust.kobalt.plugin.publish.bintray
+import com.beust.kobalt.plugins
 import com.beust.kobalt.project
 import com.beust.kobalt.repos
 import org.apache.maven.model.Developer
 import org.apache.maven.model.License
 import org.apache.maven.model.Model
 import org.apache.maven.model.Scm
+import net.thauvin.erik.kobalt.plugin.versioneye.*
 
+
+val pl = plugins("net.thauvin.erik:kobalt-versioneye:")
 val repos = repos()
 
 val dev = false
@@ -47,7 +51,7 @@ val p = project {
     }
 
     dependencies {
-        compile("com.beust:$kobaltDependency:0.863")
+        compile("com.beust:$kobaltDependency:0.878")
         compile("org.apache.maven:maven-settings-builder:3.3.9")
     }
 
@@ -66,5 +70,10 @@ val p = project {
 
     bintray {
         publish = true
+    }
+    
+    versionEye {
+        org = "thauvin"
+        team = "Owners"
     }
 }
