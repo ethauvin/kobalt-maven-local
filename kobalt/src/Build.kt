@@ -10,7 +10,7 @@ import org.apache.maven.model.Scm
 import net.thauvin.erik.kobalt.plugin.versioneye.*
 
 
-val pl = plugins("net.thauvin.erik:kobalt-versioneye:0.4.2-beta")
+val pl = plugins("net.thauvin.erik:kobalt-versioneye:")
 val repos = repos()
 
 val dev = false
