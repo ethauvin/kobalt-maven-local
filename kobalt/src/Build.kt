@@ -10,7 +10,7 @@ import org.apache.maven.model.Scm
 import net.thauvin.erik.kobalt.plugin.versioneye.*
 
 
-val pl = plugins("net.thauvin.erik:kobalt-versioneye:0.4.2-beta")
+val pl = plugins("net.thauvin.erik:kobalt-versioneye:")
 val repos = repos()
 
 val dev = false
@@ -51,7 +51,7 @@ val p = project {
     }
 
     dependencies {
-        compile("com.beust:$kobaltDependency:0.878")
+        compile("com.beust:$kobaltDependency:")
         compile("org.apache.maven:maven-settings-builder:3.3.9")
     }
 

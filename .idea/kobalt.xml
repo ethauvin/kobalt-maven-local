@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="KobaltSettings">
+    <option name="linkedExternalProjectsSettings">
+      <KobaltProjectSettings>
+        <option name="autoDownloadKobalt" value="true" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="kobaltHome" value="$USER_HOME$/.kobalt/wrapper/dist/kobalt-0.884" />
+      </KobaltProjectSettings>
+    </option>
+  </component>
+</project>
