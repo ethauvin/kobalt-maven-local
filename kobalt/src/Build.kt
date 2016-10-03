@@ -71,7 +71,7 @@ val p = project {
     bintray {
         publish = true
     }
-    
+
     versionEye {
         org = "thauvin"
         team = "Owners"
