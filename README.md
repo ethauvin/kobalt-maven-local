@@ -9,7 +9,9 @@ To use the plug-in include the following in your `Build.kt` file:
 ```kotlin
 import net.thauvin.erik.kobalt.plugin.maven.local.*
 
-val pl = plugins("net.thauvin.erik:kobalt-maven-local:")
+val bs = buildScript {
+    plugins("net.thauvin.erik:kobalt-maven-local:")
+}
 
 val p = project {
     name = "example"

@@ -4,10 +4,10 @@ import com.beust.kobalt.plugin.application.*
 import com.beust.kobalt.plugin.java.*
 import net.thauvin.erik.kobalt.plugin.maven.local.*
 
-val repos = repos(localMaven())
-
-//val pl = plugins(file("../kobaltBuild/libs/kobalt-maven-local-0.5.1.jar"))
-val pl = plugins("net.thauvin.erik:kobalt-maven-local:0.5.1")
+val bs = buildScript {
+    repos(localMaven())
+    plugins("net.thauvin.erik:kobalt-maven-local:0.5.1")
+}
 
 val example = project {
 

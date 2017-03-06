@@ -1,7 +1,7 @@
 /*
  * MavenLocalPlugin.kt
  *
- * Copyright (c) 2016, Erik C. Thauvin (erik@thauvin.net)
+ * Copyright (c) 2016-2017, Erik C. Thauvin (erik@thauvin.net)
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,7 +42,7 @@ import java.nio.file.Files
 import java.nio.file.Paths
 import java.util.*
 
-public class MavenLocalPlugin : BasePlugin(), ILocalMavenRepoPathInterceptor {
+class MavenLocalPlugin : BasePlugin(), ILocalMavenRepoPathInterceptor {
     val MAVEN_LOCAL_REPO_PROPERTY = "maven.repo.local"
 
     var mvnLocalPath: String? = null

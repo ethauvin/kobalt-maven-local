@@ -1,23 +1,22 @@
+
+import com.beust.kobalt.buildScript
 import com.beust.kobalt.plugin.packaging.assemble
 import com.beust.kobalt.plugin.publish.bintray
-import com.beust.kobalt.plugins
 import com.beust.kobalt.project
-import com.beust.kobalt.repos
+import net.thauvin.erik.kobalt.plugin.versioneye.versionEye
 import org.apache.maven.model.Developer
 import org.apache.maven.model.License
 import org.apache.maven.model.Model
 import org.apache.maven.model.Scm
-import net.thauvin.erik.kobalt.plugin.versioneye.*
 
-
-val pl = plugins("net.thauvin.erik:kobalt-versioneye:")
-val repos = repos()
+val bs = buildScript {
+    plugins("net.thauvin.erik:kobalt-versioneye:")
+}
 
 val dev = false
 val kobaltDependency = if (dev) "kobalt" else "kobalt-plugin-api"
 
 val p = project {
-
     name = "kobalt-maven-local"
     group = "net.thauvin.erik"
     artifactId = name
