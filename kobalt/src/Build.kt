@@ -1,4 +1,3 @@
-
 import com.beust.kobalt.buildScript
 import com.beust.kobalt.plugin.packaging.assemble
 import com.beust.kobalt.plugin.publish.bintray
@@ -20,7 +19,7 @@ val p = project {
     name = "kobalt-maven-local"
     group = "net.thauvin.erik"
     artifactId = name
-    version = "0.5.1"
+    version = "0.5.2"
 
     pom = Model().apply {
         description = "Maven Local Repository plug-in for the Kobalt build system."

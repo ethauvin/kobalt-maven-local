@@ -49,7 +49,7 @@ To set the system property use:
 or in `local.properties` add:
 
 ```
-maven.repo.local=~/foo/repository 
+maven.repo.local=~/foo/repository
 ```
 
 ### `~/.m2/settings.xml`
