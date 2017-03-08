@@ -3,9 +3,11 @@ import com.beust.kobalt.plugin.packaging.*
 import com.beust.kobalt.plugin.application.*
 import com.beust.kobalt.plugin.java.*
 
+// ./kobaltw run --log 2
+
 val bs = buildScript {
-    repos(localMaven())
     plugins("net.thauvin.erik:kobalt-maven-local:")
+    repos(localMaven())
 }
 
 val example = project {
