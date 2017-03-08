@@ -7,8 +7,6 @@ The plug-in will detect the Maven Local Repository location, similarly to Gradle
 To use the plug-in include the following in your `Build.kt` file:
 
 ```kotlin
-import net.thauvin.erik.kobalt.plugin.maven.local.*
-
 val bs = buildScript {
     plugins("net.thauvin.erik:kobalt-maven-local:")
 }
@@ -21,7 +19,10 @@ val p = project {
 Use the `localMaven()` directive to tell Kobalt to look for artifacts in the Maven Local Repository:
 
 ```kotlin
-val repos = repos(localMaven())
+val bs = buildScript {
+    ...
+    repos(localMaven())
+}
 ```
 
 To publish to the Maven Local Repository use the `publishToMavenLocal` task:
