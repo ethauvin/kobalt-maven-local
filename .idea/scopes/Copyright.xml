@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Copyright" pattern="file[kobalt-maven-local]:src/main/kotlin/*.kt" />
+</component>
