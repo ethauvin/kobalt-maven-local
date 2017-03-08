@@ -2,17 +2,15 @@ import com.beust.kobalt.*
 import com.beust.kobalt.plugin.packaging.*
 import com.beust.kobalt.plugin.application.*
 import com.beust.kobalt.plugin.java.*
-import net.thauvin.erik.kobalt.plugin.maven.local.*
 
 val bs = buildScript {
     repos(localMaven())
-    //plugins(file("../kobaltBuild/libs/kobalt-maven-local-0.5.2.jar"))
     plugins("net.thauvin.erik:kobalt-maven-local:")
 }
 
 val example = project {
 
-    //println(">>> LOCAL MAVEN REPO: " + localMaven())
+    // println("  >>> LOCAL MAVEN REPO: " + localMaven())
 
     name = "example"
     group = "com.example"
