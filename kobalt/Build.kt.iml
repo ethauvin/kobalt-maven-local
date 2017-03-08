@@ -19,18 +19,18 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Kobalt: com.beust.kobalt:kobalt:jar:1.0.5">
+      <library name="Kobalt: com.beust.kobalt:kobalt:jar:1.0.6">
         <CLASSES>
-          <root url="jar://$USER_HOME$/.kobalt/wrapper/dist/kobalt-1.0.5/kobalt/wrapper/kobalt-1.0.5.jar!/" />
+          <root url="jar://$USER_HOME$/.kobalt/wrapper/dist/kobalt-1.0.6/kobalt/wrapper/kobalt-1.0.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="Kobalt: kobalt-maven-local-0.5.1.jar">
+      <library name="Kobalt: kobalt-maven-local-0.5.2.jar">
         <CLASSES>
-          <root url="jar://$USER_HOME$/.kobalt/cache/net/thauvin/erik/kobalt-maven-local/0.5.1/kobalt-maven-local-0.5.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../kobaltBuild/libs/kobalt-maven-local-0.5.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

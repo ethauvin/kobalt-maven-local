@@ -11,16 +11,18 @@ import org.apache.maven.model.Developer
 import org.apache.maven.model.License
 import org.apache.maven.model.Model
 import org.apache.maven.model.Scm
+import java.io.File
 
 val semver = "0.5.2"
 
 val bs = buildScript {
-    val f = java.io.File("kobaltBuild/libs/kobalt-maven-local-$semver.jar")
-    val p = if (f.exists()) {
-        kobaltLog(1, "  >>> Using: ${f.path}")
-        file(f.path)
-    } else {
-        "net.thauvin.erik:kobalt-maven-local:"
+    val p = with(File("kobaltBuild/libs/kobalt-maven-local-$semver.jar")) {
+        if (exists()) {
+            kobaltLog(1, "  >>> Using: $path")
+            file(path)
+        } else {
+            "net.thauvin.erik:kobalt-maven-local:"
+        }
     }
     plugins("net.thauvin.erik:kobalt-versioneye:", p)
     repos(localMaven())
