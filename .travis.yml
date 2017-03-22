@@ -13,4 +13,7 @@ cache:
     - $HOME/.m2
     - $HOME/.kobalt
 
+before_cache:
+    - rm -rf .kobalt/*
+
 script: ./kobaltw clean assemble
