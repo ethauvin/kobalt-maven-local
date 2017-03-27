@@ -18,6 +18,7 @@
 /example/libs
 /gen
 /gradle.properties
+/libs
 /local.properties
 /out
 /proguard-project.txt
