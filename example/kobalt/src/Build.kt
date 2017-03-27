@@ -19,20 +19,6 @@ val example = project {
     artifactId = name
     version = "0.1"
 
-    sourceDirectories {
-        path("src/main/java")
-    }
-
-    sourceDirectoriesTest {
-        path("src/test/java")
-    }
-
-    dependencies {
-    }
-
-    dependenciesTest {
-    }
-
     assemble {
         jar {
         }

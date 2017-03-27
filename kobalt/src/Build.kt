@@ -1,18 +1,11 @@
-import com.beust.kobalt.buildScript
-import com.beust.kobalt.file
-import com.beust.kobalt.localMaven
-import com.beust.kobalt.misc.kobaltLog
-import com.beust.kobalt.plugin.application.application
-import com.beust.kobalt.plugin.packaging.assemble
-import com.beust.kobalt.plugin.publish.autoGitTag
-import com.beust.kobalt.plugin.publish.bintray
-import com.beust.kobalt.project
-import net.thauvin.erik.kobalt.plugin.versioneye.versionEye
-import org.apache.maven.model.Developer
-import org.apache.maven.model.License
-import org.apache.maven.model.Model
-import org.apache.maven.model.Scm
-import java.io.File
+import com.beust.kobalt.*
+import com.beust.kobalt.misc.*
+import com.beust.kobalt.plugin.application.*
+import com.beust.kobalt.plugin.packaging.*
+import com.beust.kobalt.plugin.publish.*
+import net.thauvin.erik.kobalt.plugin.versioneye.*
+import org.apache.maven.model.*
+import java.io.*
 
 val semver = "0.5.2"
 
@@ -29,7 +22,7 @@ val bs = buildScript {
     repos(localMaven())
 }
 
-val dev = false
+val dev by profile()
 val kobaltDependency = if (dev) "kobalt" else "kobalt-plugin-api"
 
 val p = project {
@@ -55,14 +48,6 @@ val p = project {
             name = "Erik C. Thauvin"
             email = "erik@thauvin.net"
         })
-    }
-
-    sourceDirectories {
-        path("src/main/kotlin")
-    }
-
-    sourceDirectoriesTest {
-        path("src/test/kotlin")
     }
 
     dependencies {
@@ -109,20 +94,6 @@ val example = project(p) {
     artifactId = name
     version = "0.1"
     directory = "example"
-
-    sourceDirectories {
-        path("src/main/java")
-    }
-
-    sourceDirectoriesTest {
-        path("src/test/java")
-    }
-
-    dependencies {
-    }
-
-    dependenciesTest {
-    }
 
     assemble {
         jar {
