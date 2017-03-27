@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module external.linked.project.id="kobalt-maven-local" external.linked.project.path="$MODULE_DIR$" external.root.project.path="$MODULE_DIR$" external.system.id="KOBALT" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
+  <component name="NewModuleRootManager">
     <output url="file://$MODULE_DIR$/kobaltBuild/classes" />
     <output-test url="file://$MODULE_DIR$/kobaltBuild/test-classes" />
     <exclude-output />
@@ -12,15 +12,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library">
-      <library name="Kobalt: com.beust:kobalt-plugin-api:jar:(0,]">
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.kobalt/cache/com/beust/kobalt-plugin-api/0.939/kobalt-plugin-api-0.939.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module-library">
       <library name="Kobalt: org.apache.maven:maven-artifact:jar:3.3.9">
         <CLASSES>
@@ -466,6 +457,15 @@
       <library name="Kobalt: org.apache.maven:maven-settings-builder:jar:3.3.9">
         <CLASSES>
           <root url="jar://$USER_HOME$/.kobalt/cache/org/apache/maven/maven-settings-builder/3.3.9/maven-settings-builder-3.3.9.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="Kobalt: com.beust:kobalt-plugin-api:jar:(0,]">
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.kobalt/cache/com/beust/kobalt-plugin-api/1.0.8/kobalt-plugin-api-1.0.8.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
