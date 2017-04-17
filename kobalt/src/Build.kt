@@ -87,7 +87,7 @@ val p = project {
 
 val example = project(p) {
 
-    println("  >>> LOCAL MAVEN REPO: " + localMaven())
+    println("  >>> LOCAL MAVEN REPO: " + localMaven().removePrefix("file:/"))
 
     name = "example"
     group = "com.example"

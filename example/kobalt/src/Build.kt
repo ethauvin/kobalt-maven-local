@@ -12,11 +12,9 @@ val bs = buildScript {
 
 val example = project {
 
-    // println("  >>> LOCAL MAVEN REPO: " + localMaven())
+    println("  >>> LOCAL MAVEN REPO: " + localMaven().removePrefix("file:/"))
 
     name = "example"
-    group = "com.example"
-    artifactId = name
     version = "0.1"
 
     assemble {
