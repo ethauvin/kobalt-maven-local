@@ -1,25 +1,12 @@
 import com.beust.kobalt.*
-import com.beust.kobalt.misc.*
 import com.beust.kobalt.plugin.application.*
 import com.beust.kobalt.plugin.packaging.*
 import com.beust.kobalt.plugin.publish.*
 import net.thauvin.erik.kobalt.plugin.versioneye.*
 import org.apache.maven.model.*
-import java.io.*
-
-val semver = "0.5.2"
 
 val bs = buildScript {
-    val p = with(File("kobaltBuild/libs/kobalt-maven-local-$semver.jar")) {
-        if (exists()) {
-            kobaltLog(1, "  >>> Using: $path")
-            file(path)
-        } else {
-            "net.thauvin.erik:kobalt-maven-local:"
-        }
-    }
-    plugins("net.thauvin.erik:kobalt-versioneye:", p)
-    repos(localMaven())
+    plugins("net.thauvin.erik:kobalt-versioneye:")
 }
 
 val dev by profile()
@@ -29,7 +16,7 @@ val p = project {
     name = "kobalt-maven-local"
     group = "net.thauvin.erik"
     artifactId = name
-    version = semver
+    version = "0.5.2"
 
     pom = Model().apply {
         description = "Maven Local Repository plug-in for the Kobalt build system."
@@ -51,8 +38,8 @@ val p = project {
     }
 
     dependencies {
-        compile("com.beust:$kobaltDependency:")
         compile("org.apache.maven:maven-settings-builder:3.3.9")
+        compile("com.beust:$kobaltDependency:")
     }
 
     dependenciesTest {
@@ -82,25 +69,5 @@ val p = project {
     versionEye {
         org = "thauvin"
         team = "Owners"
-    }
-}
-
-val example = project(p) {
-
-    println("  >>> LOCAL MAVEN REPO: " + localMaven().removePrefix("file:/"))
-
-    name = "example"
-    group = "com.example"
-    artifactId = name
-    version = "0.1"
-    directory = "example"
-
-    assemble {
-        jar {
-        }
-    }
-
-    application {
-        mainClass = "com.example.Main"
     }
 }
