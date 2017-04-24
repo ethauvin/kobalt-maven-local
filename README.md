@@ -16,15 +16,6 @@ val p = project {
 }
 ```
 
-Use the `localMaven()` directive to tell Kobalt to look for artifacts in the Maven Local Repository:
-
-```kotlin
-val bs = buildScript {
-    ...
-    repos(localMaven())
-}
-```
-
 To publish to the Maven Local Repository use the `publishToMavenLocal` task:
 
 ```

@@ -5,7 +5,10 @@ import com.beust.kobalt.plugin.publish.*
 import net.thauvin.erik.kobalt.plugin.versioneye.*
 import org.apache.maven.model.*
 
+// ./kobaltw install
+
 val bs = buildScript {
+    repos(file("K:/maven/repository"))
     plugins("net.thauvin.erik:kobalt-versioneye:")
 }
 
@@ -16,7 +19,7 @@ val p = project {
     name = "kobalt-maven-local"
     group = "net.thauvin.erik"
     artifactId = name
-    version = "0.5.2"
+    version = "0.5.3"
 
     pom = Model().apply {
         description = "Maven Local Repository plug-in for the Kobalt build system."
@@ -47,12 +50,18 @@ val p = project {
 
     }
 
+    install {
+        target = "K:/maven/repository/net/thauvin/erik/kobalt-maven-local/$version/"
+    }
+
     assemble {
         jar {
             fatJar = true
         }
 
-        mavenJars {}
+        mavenJars {
+            fatJar = true
+        }
     }
 
     autoGitTag {

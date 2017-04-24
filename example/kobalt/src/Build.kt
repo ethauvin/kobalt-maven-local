@@ -3,12 +3,12 @@ import com.beust.kobalt.plugin.packaging.*
 import com.beust.kobalt.plugin.application.*
 import com.beust.kobalt.plugin.java.*
 
-// ./kobaltw run --log 2
+// ./kobaltw run
+// ./kobaltw puslishToMavenLocal
 
 val bs = buildScript {
-    //plugins(file("../libs/kobalt-maven-local-0.5.2.jar"))
+    //repos(file("K:/maven/repository"))
     plugins("net.thauvin.erik:kobalt-maven-local:")
-    repos(localMaven())
 }
 
 val example = project {
